@@ -1,0 +1,27 @@
+{
+    "manifest_version": 3,
+    "name": "scratch 生存確認",
+    "version": "1.0",
+    "description": "生存確認ができます。",
+    "host_permissions": [
+        "https://scratch.mit.edu/*",
+        "https://api.scratch.mit.edu/*"
+    ],
+    "permissions": ["storage"],
+    "content_scripts": [
+        {
+            "matches": [
+                "https://scratch.mit.edu/*"
+            ],
+            "js": [
+                "time.js"
+            ]
+        }
+    ],
+    "options_ui": {
+        "page": "options.html"
+    },
+    "background": {
+        "service_worker": "background.js"
+    }
+}

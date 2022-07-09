@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Options</title>
+    <style>
+        body {
+            height: 400px;
+            overflow: hidden
+        }
+
+        p {
+            margin: 0
+        }
+    </style>
+</head>
+
+<body>
+    <label>Scratchのユーザー名
+        <input type="text" id="username"></label><br>
+    <label><input type="radio" name="a" id="bio">私について</label><br>
+    <label><input type="radio" name="a" id="status">私が取り組んでいること</label><br>
+    <div>を置き換える<br>内容:</div>
+    <textarea id="data" cols="40" rows="9"
+        placeholder="{{lastlogin}}と入力することで最終ログインを表示できます。 エスケープは面倒なので作りませんでした() あとこのプレースホルダーの使い方はおかしいらしいですが気にしない"></textarea><br>
+    <p id="count" style="color:gray;"></p>
+    <button id="save">保存</button>
+    <script src="options.js"></script>
+</body>
+
+</html>
