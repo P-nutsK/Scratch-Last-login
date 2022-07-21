@@ -23,7 +23,6 @@ document.querySelector("#save").addEventListener("click",function() {
     let message = "次の要素が不足しています。: ";
     if(!htmlUsername.value) message += "username ";
     if(!htmlData.value) message += "本文 ";
-    if(!htmlData.value.includes("{{lastlogin}}")) message += "本文内の{{lastlogin}} ";
     if(message !=="次の要素が不足しています。: ") {
         htmlCount.textContent = message;
         return false;
