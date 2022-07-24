@@ -14,18 +14,19 @@ chrome.storage.local.get(value => {
     }
     if(value.data) htmlData.innerHTML = value.data.replaceAll("\\n","&#13;");
     if(value.username) htmlUsername.value = value.username;
-    htmlCount.innerText = `残り${500 - [...htmlData.value].length - 5}文字`;
+    htmlCount.innerText = `残り約${500 - [...test(htmlData.value)].length}文字`;
 })
 htmlData.addEventListener("keyup",() => {
-    htmlCount.innerText = `残り${500 - [...htmlData.value].length - 5}文字`;
+    htmlCount.innerText = `残り約${500 - [...test(htmlData.value)].length}文字`;
 })
 document.querySelector("#save").addEventListener("click",function() {
-    let message = "次の要素が不足しています。: ";
-    if(!htmlUsername.value) message += "username ";
-    if(!htmlData.value) message += "本文 ";
-    if(message !=="次の要素が不足しています。: ") {
-        htmlCount.textContent = message;
-        return false;
+    if(!htmlUsername.value) {
+        htmlCount.textContent = "ユーザー名がありません";
+        return;
+    }
+    if(!htmlData.value) {
+        htmlCount.textContent = "本文がありません";
+        return;
     }
     chrome.storage.local.set({
         username: htmlUsername.value,
@@ -34,3 +35,24 @@ document.querySelector("#save").addEventListener("click",function() {
     })
     htmlCount.textContent = "saved!";
 })
+
+function test(str) {
+    const date = new Date();
+    return str.replace(/%ALL/g,date.toLocaleString())
+	.replace(/%YE/g, date.getFullYear())
+	.replace(/%MO/g, date.getMonth())
+	.replace(/%DA/g, date.getDate())
+	.replace(/%HO/g, date.getHours())
+	.replace(/%MI/g, date.getMinutes())
+	.replace(/%SE/g, date.getSeconds())
+	.replace(/%MS/g, date.getMilliseconds())
+	.replace(/%UALL/g,date.toString())
+	.replace(/%UYE/g, date.getUTCFullYear())
+	.replace(/%UMO/g, date.getUTCMonth())
+	.replace(/%UDA/g, date.getUTCDate())
+	.replace(/%UHO/g, date.getUTCHours())
+	.replace(/%UMI/g, date.getUTCMinutes())
+	.replace(/%USE/g, date.getUTCSeconds())
+	.replace(/%UMS/g, date.getUTCMilliseconds())
+    .replace(/%ISO/g, date.toISOString())
+}
