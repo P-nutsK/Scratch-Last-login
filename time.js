@@ -25,7 +25,8 @@ chrome.storage.local.get(function (value) {
 	.replace(/%UHO/g, date.getUTCHours())
 	.replace(/%UMI/g, date.getUTCMinutes())
 	.replace(/%USE/g, date.getUTCSeconds())
-	.replace(/%UMS/g, date.getUTCMilliseconds()) // あとこのゴリラコードをなんとかしたい
+	.replace(/%UMS/g, date.getUTCMilliseconds())
+	.replace(/%ISO/g, date.toISOString()) // あとこのゴリラコードをなんとかしたい
 	fetch(`https://scratch.mit.edu/site-api/users/all/${username}/`, {
 		"headers": {
 			"x-csrftoken": cookiedata.scratchcsrftoken,
