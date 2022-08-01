@@ -40,7 +40,7 @@ function test(str) {
     const date = new Date();
     return str.replace(/%ALL/g,date.toLocaleString())
 	.replace(/%YE/g, date.getFullYear())
-	.replace(/%MO/g, date.getMonth())
+	.replace(/%MO/g, date.getMonth() + 1)
 	.replace(/%DA/g, date.getDate())
 	.replace(/%HO/g, date.getHours())
 	.replace(/%MI/g, date.getMinutes())
@@ -48,7 +48,7 @@ function test(str) {
 	.replace(/%MS/g, date.getMilliseconds())
 	.replace(/%UALL/g,date.toString())
 	.replace(/%UYE/g, date.getUTCFullYear())
-	.replace(/%UMO/g, date.getUTCMonth())
+	.replace(/%UMO/g, date.getUTCMonth() + 1)
 	.replace(/%UDA/g, date.getUTCDate())
 	.replace(/%UHO/g, date.getUTCHours())
 	.replace(/%UMI/g, date.getUTCMinutes())
