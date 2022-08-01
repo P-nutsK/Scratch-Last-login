@@ -12,7 +12,7 @@ chrome.storage.local.get(function (value) {
 	const data = value.data
 	.replace(/%ALL/g,date.toLocaleString())
 	.replace(/%YE/g, date.getFullYear())    // Yukkkuさんのコード丸パクリしてきました(ありがとうございます)
-	.replace(/%MO/g, date.getMonth())
+	.replace(/%MO/g, date.getMonth() + 1)
 	.replace(/%DA/g, date.getDate())
 	.replace(/%HO/g, date.getHours())
 	.replace(/%MI/g, date.getMinutes())
@@ -20,7 +20,7 @@ chrome.storage.local.get(function (value) {
 	.replace(/%MS/g, date.getMilliseconds())
 	.replace(/%UALL/g,date.toString())
 	.replace(/%UYE/g, date.getUTCFullYear())
-	.replace(/%UMO/g, date.getUTCMonth())
+	.replace(/%UMO/g, date.getUTCMonth() + 1)
 	.replace(/%UDA/g, date.getUTCDate())
 	.replace(/%UHO/g, date.getUTCHours())
 	.replace(/%UMI/g, date.getUTCMinutes())
