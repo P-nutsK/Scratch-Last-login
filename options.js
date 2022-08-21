@@ -46,7 +46,7 @@ function test(str) {
 	.replace(/%MI/g, date.getMinutes())
 	.replace(/%SE/g, date.getSeconds())
 	.replace(/%MS/g, date.getMilliseconds())
-	.replace(/%UALL/g,date.toString())
+	.replace(/%UALL/g,date.toUTCString)
 	.replace(/%UYE/g, date.getUTCFullYear())
 	.replace(/%UMO/g, date.getUTCMonth() + 1)
 	.replace(/%UDA/g, date.getUTCDate())
