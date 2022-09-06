@@ -41,7 +41,7 @@ chrome.storage.local.get(function (value) {
 	const manifest = chrome.runtime.getManifest();
 	const storagedata = await chrome.storage.local.get();
 	if(latest.version != manifest.version && storagedata.lastalertversion != latest.version) {
-		chrome.tabs.create({url:chrome.runtime.getURL("update.html")});
+		chrome.runtime.sendMessage({type:"openURL",url:chrome.runtime.getURL("update.html")});
 		chrome.storage.local.set({lastalertversion:latest.version});
 	}
 })();

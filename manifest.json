@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
     "name": "scratch 生存確認",
-    "version": "1.1.0",
-    "description": "生存確認ができます。",
+    "version": "1.1.1",
+    "description": "Scratchで今流行りの生存確認ができます。",
     "host_permissions": [
         "https://scratch.mit.edu/*",
         "https://api.scratch.mit.edu/*"
