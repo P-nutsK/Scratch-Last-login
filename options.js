@@ -14,10 +14,10 @@ chrome.storage.local.get(value => {
     }
     if(value.data) htmlData.innerHTML = value.data.replaceAll("\\n","&#13;");
     if(value.username) htmlUsername.value = value.username;
-    htmlCount.innerText = `残り約${500 - [...test(htmlData.value)].length}文字`;
+    htmlCount.innerText = `残り約${200 - [...test(htmlData.value)].length}文字`;
 })
 htmlData.addEventListener("keyup",() => {
-    htmlCount.innerText = `残り約${500 - [...test(htmlData.value)].length}文字`;
+    htmlCount.innerText = `残り約${200 - [...test(htmlData.value)].length}文字`;
 })
 document.querySelector("#save").addEventListener("click",function() {
     if(!htmlUsername.value) {
