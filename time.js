@@ -4,9 +4,35 @@ document.cookie.split("; ").forEach(elem => {
 	cookiedata[arr[0]] = decodeURIComponent(arr[1]);
 });
 console.log(cookiedata);
-chrome.storage.local.get(function (value) {
+chrome.storage.local.get(async function (value) {
 	const terget = value.terget;
-	const username = value.username;
+	//ユーザー名自動取得に変更してみた
+	var username;
+	await fetch("https://scratch.mit.edu/session/", {
+		"headers": {
+			"accept": "*/*",
+			"accept-language": "ja,en-US;q=0.9,en;q=0.8",
+			"sec-ch-ua": "\"Chromium\";v=\"106\", \"Google Chrome\";v=\"106\", \"Not;A=Brand\";v=\"99\"",
+			"sec-ch-ua-mobile": "?0",
+			"sec-ch-ua-platform": "\"Windows\"",
+			"sec-fetch-dest": "empty",
+			"sec-fetch-mode": "cors",
+			"sec-fetch-site": "same-origin",
+			"x-requested-with": "XMLHttpRequest"
+		},
+		"referrer": "",
+		"referrerPolicy": "strict-origin-when-cross-origin",
+		"body": null,
+		"method": "GET",
+		"mode": "cors",
+		"credentials": "include"
+	}).then(response => {
+		return response.json()
+	}).then(json => {
+		console.log(json);
+		username = json.user.username;
+	});
+	console.log(username)
 	const date = new Date();
 	const data = value.data
 		.replace(/%ALL/g, date.toLocaleString())
@@ -40,8 +66,8 @@ chrome.storage.local.get(function (value) {
 	const latest = await (await fetch("https://raw.githubusercontent.com/P-nutsK/Scratch-Last-login/master/manifest.json")).json();
 	const manifest = chrome.runtime.getManifest();
 	const storagedata = await chrome.storage.local.get();
-	if(latest.version != manifest.version && storagedata.lastalertversion != latest.version) {
-		chrome.runtime.sendMessage({type:"openURL",url:chrome.runtime.getURL("update.html")});
-		chrome.storage.local.set({lastalertversion:latest.version});
+	if (latest.version != manifest.version && storagedata.lastalertversion != latest.version) {
+		chrome.runtime.sendMessage({ type: "openURL", url: chrome.runtime.getURL("update.html") });
+		chrome.storage.local.set({ lastalertversion: latest.version });
 	}
 })();
