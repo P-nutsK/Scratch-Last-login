@@ -9,23 +9,8 @@ chrome.storage.local.get(async function (value) {
 	//ユーザー名自動取得に変更してみた
 	var username;
 	await fetch("https://scratch.mit.edu/session/", {
-		"headers": {
-			"accept": "*/*",
-			"accept-language": "ja,en-US;q=0.9,en;q=0.8",
-			"sec-ch-ua": "\"Chromium\";v=\"106\", \"Google Chrome\";v=\"106\", \"Not;A=Brand\";v=\"99\"",
-			"sec-ch-ua-mobile": "?0",
-			"sec-ch-ua-platform": "\"Windows\"",
-			"sec-fetch-dest": "empty",
-			"sec-fetch-mode": "cors",
-			"sec-fetch-site": "same-origin",
-			"x-requested-with": "XMLHttpRequest"
-		},
-		"referrer": "",
-		"referrerPolicy": "strict-origin-when-cross-origin",
-		"body": null,
+		"headers": {"x-requested-with": "XMLHttpRequest"},
 		"method": "GET",
-		"mode": "cors",
-		"credentials": "include"
 	}).then(response => {
 		return response.json()
 	}).then(json => {
