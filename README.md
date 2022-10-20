@@ -44,3 +44,7 @@ P_nutsK(私です)
 ## Licence
 
 [MIT](https://licenses.opensource.jp/MIT/MIT.html)
+
+## 追加箇所
+
+自動的にユーザー名を取得するようにしました。それだけ。
