@@ -6,18 +6,6 @@ document.cookie.split("; ").forEach(elem => {
 console.log(cookiedata);
 chrome.storage.local.get(async function (value) {
 	const terget = value.terget;
-	//ユーザー名自動取得に変更してみた
-	var username;
-	await fetch("https://scratch.mit.edu/session/", {
-		"headers": {"x-requested-with": "XMLHttpRequest"},
-		"method": "GET",
-	}).then(response => {
-		return response.json()
-	}).then(json => {
-		console.log(json);
-		username = json.user.username;
-	});
-	console.log(username)
 	const date = new Date();
 	const data = value.data
 		.replace(/%ALL/g, date.toLocaleString())
@@ -37,7 +25,7 @@ chrome.storage.local.get(async function (value) {
 		.replace(/%USE/g, date.getUTCSeconds())
 		.replace(/%UMS/g, date.getUTCMilliseconds())
 		.replace(/%ISO/g, date.toISOString()) // あとこのゴリラコードをなんとかしたい
-	fetch(`https://scratch.mit.edu/site-api/users/all/${username}/`, {
+	fetch(`https://scratch.mit.edu/site-api/users/all/${(await (await fetch("https://scratch.mit.edu/session/", {"headers": {"x-requested-with": "XMLHttpRequest"}})).json()).user.username}/`, {//意見もらったんで少し改造
 		"headers": {
 			"x-csrftoken": cookiedata.scratchcsrftoken,
 			"x-requested-with": "XMLHttpRequest"
