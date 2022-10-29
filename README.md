@@ -47,4 +47,4 @@ P_nutsK(私です)
 
 ## 追加箇所
 
-自動的にユーザー名を取得するようにしました。それだけ。
+自動的にユーザー名を取得するようにしました。それだけ。 by [arch-herobrine](https://github.com/arch-herobrine)
