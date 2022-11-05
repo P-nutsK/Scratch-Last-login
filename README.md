@@ -45,6 +45,6 @@ P_nutsK(私です)
 
 [MIT](https://licenses.opensource.jp/MIT/MIT.html)
 
-## 追加箇所
+## 関連項目
 
-自動的にユーザー名を取得するようにしました。それだけ。 by [arch-herobrine](https://github.com/arch-herobrine)
+[Lite版(ブックマークレット)](https://p-nutsk.github.io/projects/lastlogin/)
