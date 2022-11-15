@@ -1,5 +1,4 @@
 /* eslint-disable no-undef */
-const htmlUsername = document.querySelector("#username");
 const htmlStatus = document.querySelector("#status");
 const htmlBio = document.querySelector("#bio");
 const htmlData = document.querySelector("#data");
@@ -20,10 +19,6 @@ htmlData.addEventListener("keyup",() => {
     htmlCount.innerText = `残り約${200 - [...test(htmlData.value)].length}文字`;
 })
 document.querySelector("#save").addEventListener("click",function() {
-    if(!htmlUsername.value) {
-        htmlCount.textContent = "ユーザー名がありません";
-        return;
-    }
     if(!htmlData.value) {
         htmlCount.textContent = "本文がありません";
         return;
