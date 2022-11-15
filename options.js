@@ -12,7 +12,6 @@ chrome.storage.local.get(value => {
         htmlBio.checked = true;
     }
     if(value.data) htmlData.innerHTML = value.data.replaceAll("\\n","&#13;");
-    if(value.username) htmlUsername.value = value.username;
     htmlCount.innerText = `残り約${200 - [...test(htmlData.value)].length}文字`;
 })
 htmlData.addEventListener("keyup",() => {
