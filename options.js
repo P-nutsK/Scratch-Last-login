@@ -20,7 +20,7 @@ htmlData.addEventListener("keyup",() => {
 })
 document.querySelector("#save").addEventListener("click",function() {
     if(!htmlData.value) {
-        htmlCount.textContent = "本文がありません";
+        htmlCount.innerText = "本文がありません";
         return;
     }
     chrome.storage.local.set({
@@ -28,7 +28,7 @@ document.querySelector("#save").addEventListener("click",function() {
         terget: htmlBio.checked === true ? "bio" : "status",
         data: htmlData.value.replaceAll("\n","\\n")
     })
-    htmlCount.textContent = "saved!";
+    htmlCount.innerText = "saved!";
 })
 
 function test(str) {
