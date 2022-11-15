@@ -24,7 +24,6 @@ document.querySelector("#save").addEventListener("click",function() {
         return;
     }
     chrome.storage.local.set({
-        username: htmlUsername.value,
         terget: htmlBio.checked === true ? "bio" : "status",
         data: htmlData.value.replaceAll("\n","\\n")
     })
