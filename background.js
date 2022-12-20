@@ -7,3 +7,12 @@ chrome.runtime.onMessage.addListener(function(request) {
 		}
 	}
 })
+chrome.runtime.onInstalled.addListener(() => {
+	chrome.storage.local.get("ignore",(a)=>{
+		if(JSON.stringify(a) == "{}"){
+			chrome.storage.local.set({
+				ignore:[]
+			})
+		}
+	})
+});

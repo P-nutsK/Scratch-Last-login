@@ -3,6 +3,8 @@ const htmlStatus = document.querySelector("#status");
 const htmlBio = document.querySelector("#bio");
 const htmlData = document.querySelector("#data");
 const htmlCount = document.querySelector("#count");
+const htmlIgnore = document.getElementById("ignore");
+var ignore;
 
 htmlBio.checked == true;
 chrome.storage.local.get(value => {
@@ -22,9 +24,15 @@ document.querySelector("#save").addEventListener("click",function() {
         htmlCount.textContent = "本文がありません";
         return;
     }
+    if(!htmlIgnore.value.replaceAll("\n","")){
+        ignore = []
+    }else{
+        ignore = htmlIgnore.value.split("\n")
+    }
     chrome.storage.local.set({
         terget: htmlBio.checked === true ? "bio" : "status",
-        data: htmlData.value.replaceAll("\n","\\n")
+        data: htmlData.value.replaceAll("\n","\\n"),
+        ignore: ignore
     })
     htmlCount.textContent = "saved!";
 })

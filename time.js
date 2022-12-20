@@ -25,14 +25,17 @@ chrome.storage.local.get(async function (value) {
 		.replace(/%USE/g, date.getUTCSeconds())
 		.replace(/%UMS/g, date.getUTCMilliseconds())
 		.replace(/%ISO/g, date.toISOString()) // あとこのゴリラコードをなんとかしたい
-	fetch(`https://scratch.mit.edu/site-api/users/all/${(await (await fetch("https://scratch.mit.edu/session/", {"headers": {"x-requested-with": "XMLHttpRequest"}})).json()).user.username}/`, {//意見もらったんで少し改造
-		"headers": {
-			"x-csrftoken": cookiedata.scratchcsrftoken,
-			"x-requested-with": "XMLHttpRequest"
-		},
-		"body": `{"${terget}":"${data}"}`,
-		"method": "PUT",
-	});
+	var username = (await (await fetch("https://scratch.mit.edu/session/", { "headers": { "x-requested-with": "XMLHttpRequest" } })).json()).user.username
+	if (!(value.ignore.includes(username) == -1)) {
+		fetch(`https://scratch.mit.edu/site-api/users/all/${(await (await fetch("https://scratch.mit.edu/session/", { "headers": { "x-requested-with": "XMLHttpRequest" } })).json()).user.username}/`, {//意見もらったんで少し改造
+			"headers": {
+				"x-csrftoken": cookiedata.scratchcsrftoken,
+				"x-requested-with": "XMLHttpRequest"
+			},
+			"body": `{"${terget}":"${data}"}`,
+			"method": "PUT",
+		});
+	}
 });
 
 (async () => {
