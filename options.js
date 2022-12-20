@@ -14,6 +14,9 @@ chrome.storage.local.get(value => {
         htmlBio.checked = true;
     }
     if(value.data) htmlData.innerHTML = value.data.replaceAll("\\n","&#13;");
+    if(!JSON.stringify(value.ignore) == "[]"){
+        htmlIgnore.innerHTML = JSON.stringify(value.ignore).replaceAll("[","").replaceAll("]","").replaceAll(" ",""),replaceAll(",","&#13;")
+    }
     htmlCount.innerText = `残り約${200 - [...test(htmlData.value)].length}文字`;
 })
 htmlData.addEventListener("keyup",() => {
