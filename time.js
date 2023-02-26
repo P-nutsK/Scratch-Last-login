@@ -4,27 +4,41 @@ document.cookie.split("; ").forEach(elem => {
 	cookiedata[arr[0]] = decodeURIComponent(arr[1]);
 });
 console.log(cookiedata);
+function format(text){
+  const replaceData={
+    "ALL":"toLocaleString",
+    "YE":"getFullYear",
+    "MO":date=>date.getMonth()+1,
+    "DA":"getDate",
+    "HO":"getHours",
+    "MI":"getMinutes",
+    "SE":"getSeconds",
+    "MS":"getMilliseconds",
+    "UALL":"toString",
+    "UYE":"getUTCFullYear",
+    "UMO":date=>date.getUTCMonth()+1,
+    "UDA":"getUTCDate",
+    "UHO":"getUTCHours",
+    "UMI":"getUTCMinutes",
+    "USE":"getUTCSeconds",
+    "UMS":"getUTCMilliseconds"
+  };
+  const date=new Date();
+  Object.keys(replaceData).forEach(target=>{
+    const value=replaceData[target];
+    target="%"+target;
+    if(typeof value==="string"){
+      text=text.replaceAll(target,date[value]());
+    }else{
+      text=text.replaceAll(target,value(date));
+    }
+  });
+  return text;
+}
 chrome.storage.local.get(async function (value) {
 	const terget = value.terget;
 	const date = new Date();
-	const data = value.data
-		.replace(/%ALL/g, date.toLocaleString())
-		.replace(/%YE/g, date.getFullYear())    // Yukkkuさんのコード丸パクリしてきました(ありがとうございます)
-		.replace(/%MO/g, date.getMonth() + 1)
-		.replace(/%DA/g, date.getDate())
-		.replace(/%HO/g, date.getHours())
-		.replace(/%MI/g, date.getMinutes())
-		.replace(/%SE/g, date.getSeconds())
-		.replace(/%MS/g, date.getMilliseconds())
-		.replace(/%UALL/g, date.toString())
-		.replace(/%UYE/g, date.getUTCFullYear())
-		.replace(/%UMO/g, date.getUTCMonth() + 1)
-		.replace(/%UDA/g, date.getUTCDate())
-		.replace(/%UHO/g, date.getUTCHours())
-		.replace(/%UMI/g, date.getUTCMinutes())
-		.replace(/%USE/g, date.getUTCSeconds())
-		.replace(/%UMS/g, date.getUTCMilliseconds())
-		.replace(/%ISO/g, date.toISOString()) // あとこのゴリラコードをなんとかしたい
+	const data = format(value.data);
 	fetch(`https://scratch.mit.edu/site-api/users/all/${(await (await fetch("https://scratch.mit.edu/session/", {"headers": {"x-requested-with": "XMLHttpRequest"}})).json()).user.username}/`, {//意見もらったんで少し改造
 		"headers": {
 			"x-csrftoken": cookiedata.scratchcsrftoken,
