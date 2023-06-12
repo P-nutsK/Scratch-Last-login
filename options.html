@@ -12,23 +12,54 @@
         }
 
         p {
-            margin: 0
+            margin: 0;
+            color:#322f31;
+        }
+        label,div,button,span,input {
+            color:#322f31;
+        }
+        input {
+            accent-color:#4D97FE;
+        }
+        button {
+            background-color:#4D97FE;
+            color:#fff;
+            border:none;
+            border-radius:9999px;
+            padding:8px 20px;
+            margin:5px 0px;
         }
         .small {
             font-size:5px;
         }
+        textarea {
+            color: #888;
+            resize:none;
+            border: 2px solid transparent;
+            background:transparent;
+        }
+        textarea:hover{
+            border: 2px dashed #CCCCCC;
+        }
+        #container {
+            margin: 5px auto auto;
+            background-image:url("https://cdn.scratch.mit.edu/scratchr2/static/__e65d8a7c03267938d906e22792610478__/images/scratch-bg.png")
+        }
     </style>
 </head>
 
-<body>
+<body><div id="container">
     <label><input type="radio" name="a" id="bio">私について</label><br>
     <label><input type="radio" name="a" id="status">私が取り組んでいること</label><br>
     <div>を置き換える<br>内容:</div>
-    <textarea id="data" cols="40" rows="9"
-        placeholder="%ALL %YE %MO %DA %HO %MI %SE %MS でそれぞれ表示できます。最初にUをつければ(%UHOのように)UTCで表示できます"></textarea><br>
+    <details><summary>解説</summary>%ALL %YE(年) %MO(月) %DA(日) %HO(時) %MI(分) %SE(秒) %MS(ミリ秒) でそれぞれ表示できます。最初にUをつければ(%UHOのように)UTCで表示できます"</details>
+    <textarea id="data" cols="40" rows="9">
+        サンプルテキスト
+        最終ログイン:%ALL(JST)
+この表示はJavaScriptで自動更新されています。</textarea><br>
     <p id="count" style="color:gray;"></p>
     <button id="save">保存</button>
-    <br><span style="color:gray;"class="small">これはP_nutsKとYukkkuさんが作りました(Yukkkuさんと作ったとかそういうふうに見えますが、要はコードパクっただけです)</span>
+    <br><span style="color:gray;"class="small"><a href="https://github.com/Yukkku">@Yukkku</a>さん感謝です</span>
     <script src="options.js"></script>
 </body>
 
