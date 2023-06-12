@@ -1,9 +1,11 @@
-chrome.runtime.onInstalled.addListener(chrome.runtime.openOptionsPage)
-chrome.runtime.onMessage.addListener(function(request) {
-	switch(request.type) {
-		case("openURL"): {
-			chrome.tabs.create({url:request.url});
-			break;
-		}
+chrome.action.onClicked.addListener(() => {
+	chrome.runtime.openOptionsPage()
+});
+(async () => {
+const storage =  await chrome.storage.local.get()
+	if (storage.SettingsDecided) {
+
+	} else {
+		chrome.runtime.openOptionsPage()
 	}
-})
+})();
