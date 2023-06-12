@@ -5,14 +5,15 @@ const htmlData = document.querySelector("#data");
 const htmlCount = document.querySelector("#count");
 
 htmlBio.checked == true;
-chrome.storage.local.get(value => {
-    if(value.terget === "status") {
+chrome.storage.local.get(async value => {
+    if(value.target === "status") {
         htmlStatus.checked = true;
     } else {
         htmlBio.checked = true;
     }
     if(value.data) htmlData.innerHTML = value.data.replaceAll("\\n","&#13;");
     htmlCount.innerText = `残り約${200 - [...test(htmlData.value)].length}文字`;
+
 })
 htmlData.addEventListener("keyup",() => {
     htmlCount.innerText = `残り約${200 - [...test(htmlData.value)].length}文字`;
@@ -23,10 +24,12 @@ document.querySelector("#save").addEventListener("click",function() {
         return;
     }
     chrome.storage.local.set({
-        terget: htmlBio.checked === true ? "bio" : "status",
-        data: htmlData.value.replaceAll("\n","\\n")
+        target: htmlBio.checked === true ? "bio" : "status",
+        data: htmlData.value.replaceAll("\n","\\n"),
+        SettingsDecided:true
     })
     htmlCount.textContent = "saved!";
+
 })
 
 function test(str) {

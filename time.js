@@ -36,25 +36,15 @@ function format(text){
   return text;
 }
 chrome.storage.local.get(async function (value) {
-	const terget = value.terget;
+	const target = value.target;
 	const date = new Date();
 	const data = format(value.data);
-	fetch(`https://scratch.mit.edu/site-api/users/all/${(await (await fetch("https://scratch.mit.edu/session/", {"headers": {"x-requested-with": "XMLHttpRequest"}})).json()).user.username}/`, {//意見もらったんで少し改造
+	console.log(await fetch(`https://scratch.mit.edu/site-api/users/all/${(await (await fetch("https://scratch.mit.edu/session/", {"headers": {"x-requested-with": "XMLHttpRequest"}})).json()).user.username}/`, {//意見もらったんで少し改造
 		"headers": {
 			"x-csrftoken": cookiedata.scratchcsrftoken,
 			"x-requested-with": "XMLHttpRequest"
 		},
-		"body": `{"${terget}":"${data}"}`,
+		"body": `{"${target}":"${data}"}`,
 		"method": "PUT",
-	});
+	}));
 });
-
-(async () => {
-	const latest = await (await fetch("https://raw.githubusercontent.com/P-nutsK/Scratch-Last-login/master/manifest.json")).json();
-	const manifest = chrome.runtime.getManifest();
-	const storagedata = await chrome.storage.local.get();
-	if (latest.version != manifest.version && storagedata.lastalertversion != latest.version) {
-		chrome.runtime.sendMessage({ type: "openURL", url: chrome.runtime.getURL("update.html") });
-		chrome.storage.local.set({ lastalertversion: latest.version });
-	}
-})();
