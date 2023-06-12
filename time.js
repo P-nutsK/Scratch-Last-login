@@ -21,7 +21,8 @@ function format(text){
     "UHO":"getUTCHours",
     "UMI":"getUTCMinutes",
     "USE":"getUTCSeconds",
-    "UMS":"getUTCMilliseconds"
+    "UMS":"getUTCMilliseconds",
+    "%":"%",
   };
   const date=new Date();
   Object.keys(replaceData).forEach(target=>{
