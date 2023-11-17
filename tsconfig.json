@@ -1,0 +1,14 @@
+{
+	"compilerOptions": {
+		"lib": [
+			"ESNext",
+			"DOM"
+		],
+		"checkJs": true,
+		"noEmit": true
+	},
+	"files": [
+		"options.js",
+		"time.js"
+	]
+}

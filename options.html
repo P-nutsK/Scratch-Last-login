@@ -14,21 +14,23 @@
         p {
             margin: 0
         }
+
         .small {
-            font-size:5px;
+            font-size: 5px;
         }
     </style>
 </head>
 
 <body>
-    <label><input type="radio" name="a" id="bio">私について</label><br>
-    <label><input type="radio" name="a" id="status">私が取り組んでいること</label><br>
-    <div>を置き換える<br>内容:</div>
-    <textarea id="data" cols="40" rows="9"
-        placeholder="%ALL %YE %MO %DA %HO %MI %SE %MS でそれぞれ表示できます。最初にUをつければ(%UHOのように)UTCで表示できます"></textarea><br>
-    <p id="count" style="color:gray;"></p>
-    <button id="save">保存</button>
-    <br><span style="color:gray;"class="small">これはP_nutsKとYukkkuさんが作りました(Yukkkuさんと作ったとかそういうふうに見えますが、要はコードパクっただけです)</span>
+    <form id="form">
+        <label><input type="radio" name="bioOrStatus" id="bio" value="bio">私について</label><br>
+        <label><input type="radio" name="bioOrStatus" id="status" value="status">私が取り組んでいること</label><br>
+        <div>を置き換える<br>内容:</div>
+        <textarea id="data" cols="40" rows="9" name="data"
+            placeholder="%ALL %YE %MO %DA %HO %MI %SE %MS でそれぞれ表示できます。最初にUをつければ(%UHOのように)UTCで表示できます"></textarea><br>
+        <p id="count" style="color:gray;"></p>
+        <button id="save">保存</button>
+    </form>
     <script src="options.js"></script>
 </body>
 

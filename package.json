@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/P-nutsK/Scratch-Last-login#readme",
   "devDependencies": {
-    "@types/chrome": "^0.0.201"
+    "@types/chrome": "^0.0.201",
+    "eslint": "^8.53.0"
   }
 }
